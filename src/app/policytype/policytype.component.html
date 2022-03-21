@@ -1,0 +1,73 @@
+<div class="container">
+    <form [formGroup]="policyform"  (ngSubmit)="addpolicytype()">
+    
+      <h1 style="text-align:center">Policy Type</h1>
+    
+   
+    
+        <div class="form-group">
+        <div style="text-align:center">
+        <input  type="text" ng-model="policytype"  placeholder=" Enter car/bike manufacturer" class="form-control" formControlName="manufacturer">
+        
+        <div *ngIf="!policyform.get('manufacturer')?.valid && (policyform.get('manufacturer')?.dirty|| policyform.get('manufacturer')?.touched)" 
+        class="error">
+            <div *ngIf="policyform.get('manufacturer')?.errors?.['required']">
+                <small class="text-danger">Enter the Manufracturer</small>
+            </div>
+            
+        </div>
+    </div>
+    <br>
+    
+    <div class="form-group">
+        <div style="text-align:center">
+        <input type="text"  ng-model="mobilenumber" placeholder=" Enter car/bike model" class="form-control" formControlName="model">
+        <div *ngIf="!policyform.get('model')?.valid && (policyform.get('model')?.dirty|| policyform.get('model')?.touched)" 
+        class="error">
+            <div *ngIf="policyform.get('model')?.errors?.['required']">
+                <small class="text-danger">Enter the Model</small>
+            </div>
+          </div>
+    </div>
+      <br>
+    
+    
+      <div class="form-group">
+        <div style="text-align:center">
+        <input  type="text" ng-model="email" placeholder=" Enter driving licence" class="form-control" formControlName="drivinglicence">
+        <div *ngIf="!policyform.get('drivinglicence')?.valid && (policyform.get('drivinglicence')?.dirty|| policyform.get('drivinglicence')?.touched)" 
+        class="error">
+            <div *ngIf="policyform.get('drivinglicence')?.errors?.['required']">
+                <small class="text-danger">Enter driving licence</small>
+            </div>
+    </div>
+    </div>
+      <br>
+    
+    
+      <div class="form-group">
+        <div style="text-align:center">
+        <input  type="date" ng-model="planno" placeholder=" Enter purchase date" class="form-control" formControlName="purchasedate">
+        <div *ngIf="!policyform.get('purchasedate')?.valid && (policyform.get('purchasedate')?.dirty|| policyform.get('purchasedate')?.touched)" 
+        class="error">
+            <div *ngIf="policyform.get('purchasedate')?.errors?.['required']">
+                <small class="text-danger">Enter purchase date</small>
+            </div>
+    </div>
+    </div>
+      <br>
+    
+    
+   
+      
+    
+    
+      <div class="form-group">
+      <div style="text-align:center">
+      <button class="btn-primary" (click)="addpolicytype()">Submit</button>
+    </div>
+    </div>
+    <br>
+      
+    </div>
+    
