@@ -1,29 +1,51 @@
-import{ Injectable} from "@angular/core";
+import { HttpClient } from '@angular/common/http';
 
-import{ HttpClient} from "@angular/common/http";
-import{ login } from "../Model/login.model"
+import{Injectable} from '@angular/core'
 
-@Injectable()
-export class loginService
+import { Router } from '@angular/router';
+@Injectable({providedIn:"root"})
+export class LoginService
 {
-
-constructor(private http:HttpClient)
-{
-
-
-}
-
-readonly uri="http://localhost:44530/api/Login";
-
-
-
-
-//Adding new customer data
-
-insertlogin(ins:any)
+    constructor(private http:HttpClient,private userrouter:Router )
     {
-        debugger;
-        return this.http.post(this.uri,ins,{responseType:'text'});
+
+    }
+    readonly uri = "http://localhost:25711/api/Login";
+     
+  
+
+    // checking employee  login  creditals from webapi
+    empLogin(emp:any)
+    {
+    return  this.http.post(this.uri,emp);
     }
 
+    //to check user in logged in  or not
+  loginsessionvariable: any;
+  loginuser:any
+  loginCheck()
+  {
+      this.loginuser= sessionStorage.getItem('username');
+      if(this.loginuser!="")
+      {
+          debugger;
+          this.loginsessionvariable=true;
+      }
+      else{
+          this.loginsessionvariable=false;
+      }
+    
+  }
+
+
+    //log off 
+public loginuservariable:any;
+   public dologoff()
+    {
+        debugger;
+       
+        sessionStorage.clear();
+        this.loginuservariable=false;
+       this.userrouter.navigate(['/registration']);
+    }
 }

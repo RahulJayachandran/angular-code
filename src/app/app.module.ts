@@ -10,10 +10,16 @@ import { insuranceService } from 'src/Services/insurance.service';
 import { RegistrationComponent } from './registration/registration.component';
 import { registrationService } from 'src/Services/Registration.service';
 import { LoginComponent } from './login/login.component';
-import { loginService } from 'src/Services/login.service';
+import { LoginService } from 'src/Services/login.service';
 import { planService } from 'src/Services/plan.service';
 import { PlansComponent } from './plans/plans.component';
 import { PolicytypeComponent } from './policytype/policytype.component';
+import { policyService } from 'src/Services/policytype.service';
+import { PaymentComponent } from './payment/payment.component';
+import { paymentService } from 'src/Services/payment.service';
+import { AdminlayoutComponent } from './adminlayout/adminlayout.component';
+import { HomeComponent } from './home/home.component';
+import { PremiumcalculatorComponent } from './calculate-insurance/premiumcalculator.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +29,10 @@ import { PolicytypeComponent } from './policytype/policytype.component';
     LoginComponent,
     PlansComponent,
     PolicytypeComponent,
+    PaymentComponent,
+    AdminlayoutComponent,
+    HomeComponent,
+    PremiumcalculatorComponent,
   
     
     
@@ -35,7 +45,7 @@ import { PolicytypeComponent } from './policytype/policytype.component';
     HttpClientModule
     
   ],
-  providers: [insuranceService,registrationService,loginService,planService],
+  providers: [insuranceService,registrationService,LoginService,planService,policyService,paymentService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

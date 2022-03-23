@@ -49,11 +49,11 @@ export class InsuranceComponent implements OnInit {
 
 
         if(data !== "Please check whether Chassis number, Registration number and Engine number is unique!!") {
-          this.router.navigate(['login']);
+          this.router.navigate(['plans']);
         }
       }
     );
-    window.alert("Please check whether Chassis number, Registration number and Engine number is unique");
+   // window.alert("Please check whether Chassis number, Registration number and Engine number is unique");
     
   }
    

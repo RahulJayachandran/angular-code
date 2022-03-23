@@ -6,7 +6,8 @@ import { NgForm } from '@angular/forms';
 import { registration } from 'src/Model/Registration.model';
 import { Router } from '@angular/router';
 
-
+import { AppComponent } from 'src/app/app.component';
+import { LoginService } from 'src/Services/login.service';
 @Component({
   selector: 'app-registration',
   templateUrl: './registration.component.html',
@@ -14,9 +15,12 @@ import { Router } from '@angular/router';
 })
 export class RegistrationComponent implements OnInit {
 
-  constructor(private fb:FormBuilder,private regservice:registrationService,private router:Router) { }
+  constructor(private fb:FormBuilder,private regservice:registrationService,private router:Router,private AppComponent:AppComponent,private loginservice:LoginService,) { }
 
   ngOnInit(): void {
+    this.loginservice.loginsessionvariable=true;
+    
+    this.AppComponent.login();
   }
 
   registrationform=this.fb.group({
@@ -44,7 +48,7 @@ export class RegistrationComponent implements OnInit {
         this.router.navigate(['insurance']);
       }
     });
-    window.alert("Check wheather the details are correct");
+   // window.alert("Check wheather the details are correct");
   }
 
 }

@@ -1,11 +1,35 @@
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">LTI Userdashboard</a>
+      </div>
+      <ul class="nav navbar-nav">
+        <li class="active"><a   routerLink="/registration">Home</a></li>
+        
+        <!--<li class="active"><a   routerLink="/">Premium Calculator</a></li>
+        <li class="active"><a   routerLink="/payment">payment</a></li>-->
+        <li  *ngIf="!usercheck" ><a  routerLink="login">login</a></li>
+        <li *ngIf="!userchecklogoff"  ><a  routerLink="registration">logoff</a></li>
+     
+        
+       
+          
+        
+      </ul>
+    </div>
+  </nav>
 
-<app-policytype></app-policytype>
+  <div>
+<router-outlet></router-outlet>
+</div>
 
 
 <!-- <app-insurance></app-insurance> 
 <app-registration></app-registration>
 <app-login></app-login>
 <app-plans></app-plans>
-<router-outlet></router-outlet>-->
+<app-policytype></app-policytype>
+<app-payment></app-payment>
+-->
 
 

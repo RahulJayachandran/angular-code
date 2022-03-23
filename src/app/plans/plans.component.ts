@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder,FormGroup,FormControl,Validator,Validators,AbstractControl } from '@angular/forms';
 import { planService } from 'src/Services/plan.service';
+import { HttpClient } from '@angular/common/http';
+import { NgForm } from '@angular/forms';
+import {plan} from 'src/Model/plan.model';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-plans',
@@ -9,7 +14,7 @@ import { planService } from 'src/Services/plan.service';
 })
 export class PlansComponent implements OnInit {
 
-  constructor(private fb:FormBuilder,private plnservice:planService) { }
+  constructor(private fb:FormBuilder,private plnservice:planService,private router:Router) { }
 
   ngOnInit(): void {
   }
@@ -33,10 +38,14 @@ export class PlansComponent implements OnInit {
       (data: any) => {
         this.result=data,console.log(this.result) 
 
-
+        if(data !== "Some Error Occured!!!") {
+          this.router.navigate(['policytype']);
+        }
         
       }
     );
+
+   //window.alert("Your plan has been added");
   }
 
 }

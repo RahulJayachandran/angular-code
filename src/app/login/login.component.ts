@@ -1,11 +1,8 @@
-
-
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup,FormControl,Validator,FormBuilder,Validators, AbstractControl } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
-import { loginService } from 'src/Services/login.service';
-import { NgModule } from '@angular/core';
-import { login } from 'src/Model/login.model';
+import { Router } from '@angular/router';
+import { AppComponent } from 'src/app/app.component';
+import { LoginService } from 'src/Services/login.service';
 
 @Component({
   selector: 'app-login',
@@ -14,34 +11,73 @@ import { login } from 'src/Model/login.model';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private fb:FormBuilder,private logservice:loginService) { }
+  constructor(private userrouter:Router,private loginservice:LoginService ,private AppComponent:AppComponent) { }
 
-  ngOnInit(): void {
-  }
-
-  loginform=this.fb.group({
-    email:['',[Validators.required,Validators.email]],
-    Password:['',[Validators.required]],
-    
-  });
-
-  //post
-
-  login : any ={};
-  result : any;
   
-  loginuser()
+
+  emp:any={};
+  loginstatus:any;
+  loggedinempdetails:any={};
+  ngOnInit() {
+  }
+err: any;
+  doLogin()
   {
-    console.log( this.loginform.value);
-    this.logservice.insertlogin(this.loginform.value).subscribe(
-      (data: any) => {
-        this.result=data,console.log(this.result) 
+    //debugger;
+    //console.log(this.emp);
+    //Admin
+    if(this.emp.email=="rahul@gmail.com" &&this.emp.password=="rahul")
+    {
+      debugger;
+      this.loginservice.loginuservariable=false;
+      sessionStorage.setItem('username','admin')
+      //to check any user is logged in or not 
+      this.loginservice.loginCheck();
+      this.AppComponent.login();
+     // localStorage.setItem("loginS", "true");
+      this.userrouter.navigate(['/adminlayout']);
 
+    }
 
-        
+    else if(this.emp!= null)
+    {
+       this.loginservice.empLogin(this.emp).subscribe((data)=>{
+        this.loggedinempdetails=data as JSON;
+        debugger;
+
+         sessionStorage.setItem('username',this.loggedinempdetails.name);
+          //to check any user is logged in or not 
+      this.loginservice.loginCheck();
+      debugger;
+         if(data!='Invalid')
+         {
+           debugger;
+        this.loginservice.loginuservariable=true;
+          this.userrouter.navigate(['/employee']);
+          
+         }
+         
+     /*  else 
+       {
+        console.log(this.loggedinempdetails.text);
+         debugger;
+         this.userrouter.navigate(['/login']);
+         this.err="Invalid Mobile No or Password!!!";
+       }*/
+
+       }, (error:HttpErrorResponse) => {                              //Error callback
+       
+        if(error.status==400)
+        {
+          this.userrouter.navigate(['/login']);
+          //this.err= error.error.message;
+          this.err="Invalid Mobile No or Password!!!";
+        }
+      });
       }
-    );
+      else{
+        this.err="Please enter valid creditianls!!!";
+      }
   }
-  
 
 }

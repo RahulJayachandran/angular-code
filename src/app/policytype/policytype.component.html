@@ -1,73 +1,51 @@
-<div class="container">
-    <form [formGroup]="policyform"  (ngSubmit)="addpolicytype()">
-    
+
+    <form [formGroup]="policyform"  >
+      <div class="container">
+
+
       <h1 style="text-align:center">Policy Type</h1>
-    
-   
-    
-        <div class="form-group">
-        <div style="text-align:center">
-        <input  type="text" ng-model="policytype"  placeholder=" Enter car/bike manufacturer" class="form-control" formControlName="manufacturer">
-        
-        <div *ngIf="!policyform.get('manufacturer')?.valid && (policyform.get('manufacturer')?.dirty|| policyform.get('manufacturer')?.touched)" 
-        class="error">
-            <div *ngIf="policyform.get('manufacturer')?.errors?.['required']">
-                <small class="text-danger">Enter the Manufracturer</small>
-            </div>
-            
-        </div>
-    </div>
-    <br>
-    
+      <br><br>
+ 
     <div class="form-group">
         <div style="text-align:center">
-        <input type="text"  ng-model="mobilenumber" placeholder=" Enter car/bike model" class="form-control" formControlName="model">
-        <div *ngIf="!policyform.get('model')?.valid && (policyform.get('model')?.dirty|| policyform.get('model')?.touched)" 
+        <input type="number"  ng-model="mobilenumber" placeholder=" Enter your mobilenumber" class="form-control" formControlName="MobileNumber">
+        <div *ngIf="!policyform.get('mobilenumber')?.valid && (policyform.get('mobilenumber')?.dirty|| policyform.get('mobilenumber')?.touched)" 
         class="error">
-            <div *ngIf="policyform.get('model')?.errors?.['required']">
-                <small class="text-danger">Enter the Model</small>
+            <div *ngIf="policyform.get('mobilenumber')?.errors?.['mobilenumber']">
+                <small class="text-danger">Enter the mobile number</small>
             </div>
           </div>
     </div>
-      <br>
+    </div>
+      <br><br>
     
     
       <div class="form-group">
-        <div style="text-align:center">
-        <input  type="text" ng-model="email" placeholder=" Enter driving licence" class="form-control" formControlName="drivinglicence">
-        <div *ngIf="!policyform.get('drivinglicence')?.valid && (policyform.get('drivinglicence')?.dirty|| policyform.get('drivinglicence')?.touched)" 
+        <label for="email"><b>Email</b></label>
+        <input type="text" placeholder="Enter Email" class="form-control" formControlName="Email"> 
+        
+  
+        <div *ngIf="!policyform.get('email')?.valid && (policyform.get('email')?.dirty|| policyform.get('email')?.touched)" 
         class="error">
-            <div *ngIf="policyform.get('drivinglicence')?.errors?.['required']">
-                <small class="text-danger">Enter driving licence</small>
+            <div *ngIf="policyform.get('email')?.errors?.['required']">
+                <small class="text-danger">Email is required</small>
             </div>
-    </div>
-    </div>
-      <br>
-    
-    
-      <div class="form-group">
-        <div style="text-align:center">
-        <input  type="date" ng-model="planno" placeholder=" Enter purchase date" class="form-control" formControlName="purchasedate">
-        <div *ngIf="!policyform.get('purchasedate')?.valid && (policyform.get('purchasedate')?.dirty|| policyform.get('purchasedate')?.touched)" 
-        class="error">
-            <div *ngIf="policyform.get('purchasedate')?.errors?.['required']">
-                <small class="text-danger">Enter purchase date</small>
-            </div>
-    </div>
-    </div>
-      <br>
-    
-    
-   
-      
+            <div *ngIf="policyform.get('email')?.errors?.['email']">
+              <small class="text-danger">Check the Email format </small>
+          </div>
+        </div>
+  
+        </div>
+        <br><br>
     
     
       <div class="form-group">
       <div style="text-align:center">
-      <button class="btn-primary" (click)="addpolicytype()">Submit</button>
+      <button class="btn-primary" (click)="addpolicytype()">Add policy</button>
     </div>
     </div>
     <br>
       
     </div>
+    </form>
     
